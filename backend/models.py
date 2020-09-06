@@ -10,11 +10,12 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     book_format = models.CharField(max_length=20)
     stars = models.FloatField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(5)])
-    price = models.FloatField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(500)])
+    price = models.FloatField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(500)], null=False)
     currency = models.CharField(max_length=1)
     old_price = models.FloatField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(500)])
     isbn = models.CharField(max_length=13)
     category = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.name
