@@ -26,3 +26,5 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
+
+
