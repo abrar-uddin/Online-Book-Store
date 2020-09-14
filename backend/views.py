@@ -1,13 +1,10 @@
-from django.shortcuts import render
-from django.utils.datetime_safe import datetime
+from .models import ShoppingCart, Item, Book
+from .serializer import ShoppingCartSerializer, ItemSerializer, UserSerializer, BookSerializer
+from django.contrib.auth.models import User
 
-from .models import ShoppingCart, Item
-from .serializer import ShoppingCartSerializer, ItemSerializer
-
-from rest_framework import generics
-from rest_framework import mixins
+from rest_framework.response import Response
 from rest_framework import viewsets
-from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 
 # API Auth
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, \
@@ -17,10 +14,25 @@ from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
+class BookViewSet(viewsets.ModelViewSet):
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()
+
 
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
     queryset = ShoppingCart.objects.all()
+
+    @action(detail=True, methods=['get'])
+    def get_cart_total(self, request, pk=None):
+        data = ShoppingCart.objects.get(pk=pk).get_total()
+        return Response(data)
+
+    @action(detail=True, methods=['get'])
+    def get_cart_items(self, request, pk=None):
+        data = ShoppingCart.objects.get(pk=pk).get_cart_items()
+        serializer = ItemSerializer(data, many=True)
+        return Response(serializer.data)
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -28,3 +40,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
