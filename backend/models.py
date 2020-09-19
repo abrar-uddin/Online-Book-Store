@@ -42,7 +42,7 @@ class ShoppingCart(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     items = models.ManyToManyField(Item, blank=True)
-    user = models.ForeignKey('auth.User', related_name='user_shopping_cart', on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
 
     def get_cart_items(self):
         return self.items.all()
@@ -52,6 +52,12 @@ class ShoppingCart(models.Model):
 
     def update_cart(self):
         self.items.set(Item.objects.filter(user=self.user))
+
+    def delete(self, *args, **kwargs):
+        to_delete = Item.objects.filter(user=self.user)
+        to_delete.delete()
+
+        super(ShoppingCart, self).delete(*args, **kwargs)
 
     def __str__(self):
         return "{} has {} in their cart. Their total is ${}".format(self.user, self.get_cart_items(),
