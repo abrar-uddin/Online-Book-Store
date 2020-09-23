@@ -89,3 +89,13 @@ class ShoppingCartFeatureTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, 0)
+
+    def test_shopping_cart_get_cart_items(self):
+        """
+        Ensure we can get the total of the shopping cart object.
+        """
+        self.test_shopping_cart_create()
+        url = reverse('shopping_cart-detail', kwargs={"pk": 1}) + 'get_cart_items/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
