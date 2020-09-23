@@ -1,4 +1,5 @@
 .idea
+__pycache__
 frontend/__pycache__
 frontend/migrations/__pycache__
 backend/__pycache__
