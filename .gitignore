@@ -1,4 +1,6 @@
 .idea
+frontend/__pycache__
+frontend/migrations/__pycache__
 backend/__pycache__
 backend/migrations/__pycache__
 bookstore/__pycache__
