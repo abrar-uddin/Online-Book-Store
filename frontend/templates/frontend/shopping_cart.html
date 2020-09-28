@@ -1,10 +1,123 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Shopping Cart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'frontend/materialize.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'frontend/materialize.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<nav>
+    <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo">Book Store</a>
+        <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
+        </ul>
+    </div>
+</nav>
 
+{% comment %}Mobile Navbar{% endcomment %}
+<ul class="sidenav" id="mobile">
+    <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
+</ul>
+
+<body>
+<div class="container">
+    <h2>Cart Items</h2>
+    <div class="row">
+        <div class="row">
+            <div class="col s12">
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/51jtWIqJzML._SX352_BO1,204,203,200_.jpg">
+                    </div>
+                    <button class="btn waves-effect waves-teal">
+                        <i class="material-icons right">indeterminate_check_box</i>
+                    </button>
+                    <div class="input-field">
+                        <input id="quantity" type="text inline" class="validate center">
+                        <label class="active center-align" for="quantity">QT</label>
+                    </div>
+                    <button class="btn waves-effect waves-teal">
+                        <i class="material-icons right">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Checkout</h2>
+    <div class="row">
+        <form class="col s12">
+            <h5>Billing Information</h5>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate">
+                    <label class="active" for="first_name">John</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label class="active" for="last_name">Doe</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="address" type="text" class="validate">
+                    <label class="active" for="address">11200 SW 8th St, Miami, FL 33199</label>
+                </div>
+            </div>
+            <h5>Payment Information</h5>
+            <div class="row">
+                <div class="input-field col s3">
+                    <input id="name_on_card" type="text" class="validate">
+                    <label class="active" for="name_on_card">John Doe</label>
+                </div>
+                <div class="input-field col s9">
+                    <input id="card_number" type="text" class="validate">
+                    <label class="active" for="card_number">Card Number</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <i class="material-icons prefix">date_range</i>
+                    <input id="exp_date" type="text" class="datepicker">
+                    <label class="active" for="exp_date">Expiration Date</label>
+                </div>
+                <div class="input-field col s5">
+                    <input id="cvv" type="text" class="validate">
+                    <label class="active" for="cvv">CVV</label>
+                </div>
+                <div class="col s2">
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" checked="checked"/>
+                            <span>Shipping address same as billing</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Checkout
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+</div>
 </body>
+
+<script>
+    // Side Nav
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+    });
+
+    // Auto update fields needs to be implemented
+    $(document).ready(function () {
+        M.updateTextFields();
+    });
+
+    // Date picker
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
 </html>
