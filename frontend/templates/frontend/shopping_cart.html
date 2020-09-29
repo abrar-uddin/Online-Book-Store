@@ -2,132 +2,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="{% static 'frontend/materialize.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'frontend/materialize.css' %}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<nav>
-    <div class="nav-wrapper teal">
-        <a href="#" class="brand-logo">Book Store</a>
-        <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
-        </ul>
-    </div>
-</nav>
-
-{% comment %}Mobile Navbar{% endcomment %}
-<ul class="sidenav" id="mobile">
-    <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
-</ul>
-
 <body>
-<div class="container">
-    <h2>Cart Items</h2>
-    <div class="row">
-        <div class="col s12">
-            <div class="card horizontal" style="height:150px">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator"
-                         src="https://images-na.ssl-images-amazon.com/images/I/51jtWIqJzML._SX352_BO1,204,203,200_.jpg"
-                         height="150px">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s8">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros, tincidunt
-                                    vitae tellus quis, euismod pharetra felis.....
-                                </p>
-                            </div>
-                            <div class="input-field col s2  right">
-                                Price
-                                <input disabled value="$10.99" id="book_price" type="text" class="validate">
-                                <label for="book_price"></label>
-                            </div>
-                            <div class="input-field col s2  right">
-                                Quantity
-                                <input value="1" id="book_quantity" type="text" class="validate">
-                                <label class="active" for="book_quantity"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros, tincidunt vitae
-                        tellus quis, euismod pharetra felis. Maecenas quis nulla ut augue feugiat facilisis. Sed
-                        blandit urna in nisi consequat finibus. Mauris scelerisque, arcu eu mattis laoreet, nunc
-                        leo elementum nisi, non euismod neque dolor nec nibh. Etiam et nisi ut turpis efficitur
-                        ornare in ac dolor. Maecenas ac aliquet lorem. Aliquam ut rhoncus ante. Nunc suscipit
-                        ante magna, porta venenatis arcu dictum ac. Nam posuere massa non aliquet auctor. Nulla
-                        dapibus metus quam, eu cursus mauris bibendum in. Duis ipsum augue, gravida vitae mi
-                        sed, convallis pellentesque est. Vestibulum a hendrerit dui, sed placerat ante. Nunc
-                        tristique, mi ut feugiat facilisis, libero tellus egestas diam, vel vestibulum lorem
-                        lorem quis eros. Donec vitae felis sed justo volutpat pulvinar.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <h2>Checkout</h2>
-    <div class="row">
-        <form class="col s12">
-            <h5>Billing Information</h5>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="first_name" type="text" class="validate">
-                    <label class="active" for="first_name">John</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label class="active" for="last_name">Doe</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="address" type="text" class="validate">
-                    <label class="active" for="address">11200 SW 8th St, Miami, FL 33199</label>
-                </div>
-            </div>
-            <h5>Payment Information</h5>
-            <div class="row">
-                <div class="input-field col s3">
-                    <input id="name_on_card" type="text" class="validate">
-                    <label class="active" for="name_on_card">John Doe</label>
-                </div>
-                <div class="input-field col s9">
-                    <input id="card_number" type="text" class="validate">
-                    <label class="active" for="card_number">Card Number</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s5">
-                    <i class="material-icons prefix">date_range</i>
-                    <input id="exp_date" type="text" class="datepicker">
-                    <label class="active" for="exp_date">Expiration Date</label>
-                </div>
-                <div class="input-field col s5">
-                    <input id="cvv" type="text" class="validate">
-                    <label class="active" for="cvv">CVV</label>
-                </div>
-                <div class="col s2">
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" checked="checked"/>
-                            <span>Shipping address same as billing</span>
-                        </label>
-                    </p>
-                </div>
-            </div>
-            <button class="btn waves-effect waves-light pulse" type="submit" name="action">Checkout
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
-    </div>
+<div id="app">
+
 </div>
 </body>
+
+
+
+<link rel="stylesheet" href="{% static 'frontend/materialize.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="{% static 'frontend/main.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{% static 'frontend/materialize.js' %}"></script>
 
 <script>
     // Side Nav
