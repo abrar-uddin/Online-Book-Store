@@ -27,64 +27,241 @@
 <link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
 
 <body>
-        <div class="row">
-        <div class="col s12 m4 l2 teal lighten-2" id="sidenav" style="height: 1000px">
+    <!-- First Row of the Page-->
+    <div class="row">
+        <div class="col s12 m4 l2 white" id="sidenav" style="height: auto">
             <ul class="menu">
                 <li class="title" style="font-size: 1.50em">Sort By:</li>
                 <li class="divider"></li>
-
-                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">sort_by_alpha</i>Title</a></li>
-                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">person_outline</i>Author</a></li>
-                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">attach_money</i>Price</a></li>
-                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">star</i>Book Rating</a></li>
-                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">date_range</i>Release Date</a></li>
+                <li class="title"><a href="#" style="color: teal "><i class="material-icons left" style="font-size: 20px">sort_by_alpha</i>Title</a></li>
+                <li class="title"><a href="#" style="color: teal"><i class="material-icons left" style="font-size: 20px">person_outline</i>Author</a></li>
+                <li class="title"><a href="#" style="color: teal"><i class="material-icons left" style="font-size: 20px">attach_money</i>Price</a></li>
+                <li class="title"><a href="#" style="color: teal"><i class="material-icons left" style="font-size: 20px">star</i>Book Rating</a></li>
+                <li class="title"><a href="#" style="color: teal"><i class="material-icons left" style="font-size: 20px">date_range</i>Release Date</a></li>
             </ul>
         </div>
-
-        <div class="row">
-            <div class="col s12 m5">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/sample-1.jpg">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am
-                                convenient because I require little markup to use effectively.</p>
-                    </div>
+        <!-- First Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762767012908630026/20201005_155513.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
-            </div>
-
-            <div class="col s12 m5">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/sample-1.jpg">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am
-                                convenient because I require little markup to use effectively.</p>
-                    </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
                 </div>
-            </div>
-
-            <div class="col s12 m5">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/sample-1.jpg">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am
-                                convenient because I require little markup to use effectively.</p>
-                    </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
                 </div>
             </div>
         </div>
+        <!-- Second Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762721335977705502/paimon_meme.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Third Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762753144480333834/20201005_150805.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Second Row of the Page-->
+    <div class="row">
+        <div class="col s12 m4 l2 white" id="sidenav" style="height: auto">
+        </div>
+        <!-- First Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/761383629385105498/image0.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Second Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762721335977705502/paimon_meme.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Third Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762753144480333834/20201005_150805.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Row of the Page-->
+     <div class="row">
+        <div class="col s12 m4 l2 white" id="sidenav" style="height: auto">
+        </div>
+         <!-- First Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/761383629385105498/image0.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+         <!-- Second Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762721335977705502/paimon_meme.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+         <!-- Third Column Book of the Page-->
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-image">
+                  <img class="activator" src="https://cdn.discordapp.com/attachments/322914168355422218/762753144480333834/20201005_150805.jpg" style="width:320px;height:240px;">
+                  <span class="card-title">Book Title</span>
+                  <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                                tincidunt
+                                                vitae tellus quis, euismod pharetra felis.....
+                  </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Book Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Pages Shown -->
+    <ul class="pagination">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active teal"><a href="#!">1</a></li>
+        <li class="waves-effect "><a href="#!">2</a></li>
+        <li class="waves-effect "><a href="#!">3</a></li>
+        <li class="waves-effect "><a href="#!">4</a></li>
+        <li class="waves-effect "><a href="#!">5</a></li>
+        <li class="waves-effect "><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+     </ul>
+
+    <!-- Footer -->
+     <footer class="page-footer teal">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Pavu Jett™ Book</h5>
+                <p class="grey-text text-lighten-4">Thank you for visiting our page for the books in our store!</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">Pavu Jett™</a>
+            </div>
+          </div>
+        </footer>
 
 </body>
 
