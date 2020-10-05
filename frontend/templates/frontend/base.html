@@ -1,14 +1,148 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
+<nav>
+    <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo">Pavu Jett Online Book Store</a>
+        <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/home"><i class="material-icons left">store</i>Home</a></li>
+            <li><a href="/account"><i class="material-icons left">person</i>Account</a></li>
+            <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
+        </ul>
+    </div>
+    <ul class="sidenav" id="mobile">
+        <li><a href="/home"><i class="material-icons left">store</i>Home</a></li>
+        <li><a href="/account"><i class="material-icons left">person</i>Account</a></li>
+        <li><a href="/shopping_cart"><i class="material-icons left">shopping_cart</i>Cart</a></li>
+    </ul>
+</nav>
 
 <head>
     <meta charset="UTF-8">
     <title>Book Browsing</title>
 </head>
 
+<link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
+
 <body>
-    <h3><strong>Pavu Jett Online Book Store</strong></h3>
-    <hr size = '3'>
+        <div class="row">
+        <div class="col s12 m4 l2 teal lighten-2" id="sidenav" style="height: 1000px">
+            <ul class="menu">
+                <li class="title" style="font-size: 1.50em">Sort By:</li>
+                <li class="divider"></li>
+
+                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">sort_by_alpha</i>Title</a></li>
+                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">person_outline</i>Author</a></li>
+                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">attach_money</i>Price</a></li>
+                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">star</i>Book Rating</a></li>
+                <li class="title"><a href="#" style="color: white"><i class="material-icons left" style="font-size: 20px">date_range</i>Release Date</a></li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row2">
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m5">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        <span class="card-title">Card Title</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information. I am
+                                convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
+
+
+<link rel="stylesheet" href="{% static 'frontend/materialize.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="{% static 'frontend/main.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{% static 'frontend/materialize.js' %}"></script>
+<script>
+    // Side Nav
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+    });
+</script>
 
 </html>
