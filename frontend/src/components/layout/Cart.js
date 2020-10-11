@@ -1,13 +1,24 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import {connect} from "react-redux";
+import PropTypes from 'prop-types';
+import {getCart} from "../../actions/shopping_cart";
 
 export class Cart extends Component {
+    static propTypes = {
+        shopping_cart: PropTypes.array.isRequired
+    }
+
+    componentDidMount() {
+        this.props.getCart();
+    }
+
     render() {
         return (
             <div className="container">
                 <h2>Cart Items</h2>
                 <div className="row">
                     <div className="col s12">
-                        <div className="card horizontal" style={{height:150}}>
+                        <div className="card horizontal" style={{height: 150}}>
                             <div className="card-image waves-effect waves-block waves-light">
                                 <img className="activator"
                                      src="https://images-na.ssl-images-amazon.com/images/I/51jtWIqJzML._SX352_BO1,204,203,200_.jpg"
@@ -29,7 +40,8 @@ export class Cart extends Component {
                                         </div>
                                         <div className="input-field col s2  right">
                                             Quantity
-                                            <input value="1" id="book_quantity" type="text" className="validate"></input>
+                                            <input value="1" id="book_quantity" type="text"
+                                                   className="validate"></input>
                                         </div>
                                     </div>
                                 </div>
@@ -111,5 +123,8 @@ export class Cart extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    shopping_cart: state.shopping_cart.shopping_cart
+})
 
-export default Cart;
+export default connect(mapStateToProps, {getCart: getCart})(Cart);

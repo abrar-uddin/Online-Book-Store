@@ -22,22 +22,29 @@ class BookViewSet(viewsets.ModelViewSet):
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
     queryset = ShoppingCart.objects.all()
-    # authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     return ShoppingCart.objects.filter(user=user)
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return ShoppingCart.objects.filter(user=user)
 
     @action(detail=True, methods=['get'])
     def get_cart_total(self, request, pk=None):
-        data = ShoppingCart.objects.get(user=request.user).get_total()
+        data = ShoppingCart.objects.get(pk=pk).get_total()
         return Response(data)
 
     @action(detail=True, methods=['get'])
     def get_cart_items(self, request, pk=None):
-        data = ShoppingCart.objects.get(user=request.user).get_cart_items()
+        data = ShoppingCart.objects.get(pk=pk).get_cart_items()
         serializer = ItemSerializer(data, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def get_cart_books(self, request, pk=None):
+        data = ShoppingCart.objects.get(pk=pk).get_cart_books()
+        serializer = BookSerializer(data, many=True)
         return Response(serializer.data)
 
 
