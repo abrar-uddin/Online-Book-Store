@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-import {GET_CART, GET_CART_TOTAL} from "./types";
+import { createMessage, returnErrors } from './messages';
+import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM} from "./types";
 
 const SHOPPING_CART_ENDPOINT = "/api/shopping_cart"
+const ITEM_ENDPOINT = "/api/item"
 
 // GET Cart
 export const getCart = () => dispatch => {
@@ -16,8 +18,8 @@ export const getCart = () => dispatch => {
                     });
                 })
 
-        }).catch(err => console.log(err));
-}
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
 
 // GET Cart Total
 export const getCartTotal = () => dispatch => {
@@ -31,5 +33,33 @@ export const getCartTotal = () => dispatch => {
                     });
                 })
 
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// UPDATE Item
+export const updateItem = (id, quantity,book_id, user) => dispatch => {
+    axios.put(`${ITEM_ENDPOINT}/${id}/`, {
+        "quantity": quantity,
+        "book": book_id,
+        "user": user
+    })
+        .then(res => {
+            dispatch({
+                type: UPDATE_ITEM,
+                payload: id
+            });
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// DELETE Item
+export const deleteItem = (id) => dispatch => {
+    axios.delete(`${ITEM_ENDPOINT}/${id}/`)
+        .then(res => {
+            getCartTotal()
+            dispatch(createMessage({ deleteLead: 'Item Deleted' }));
+            dispatch({
+                type: DELETE_ITEM,
+                payload: id
+            });
         }).catch(err => console.log(err));
-}
+};

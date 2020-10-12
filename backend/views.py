@@ -1,13 +1,9 @@
 from .models import ShoppingCart, Item, Book
 from .serializer import ShoppingCartSerializer, ItemSerializer, UserSerializer, BookSerializer
 from django.contrib.auth.models import User
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-import json
-from itertools import chain
 
 from rest_framework.response import Response
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 
 # API Auth
@@ -15,6 +11,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
     TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
+
+# TODO: Delete when auth has been implemented
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
 
 # Create your views here.
 
@@ -27,8 +29,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
     queryset = ShoppingCart.objects.all()
 
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [CsrfExemptSessionAuthentication, BasicAuthentication]
 
     def get_queryset(self):
         user = self.request.user
@@ -57,10 +58,14 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
         def find_item(look):
             for x in items:
                 if look == x['book']:
-                    return x['quantity']
+                    return x
 
-        for x in books:
-            x.update({"quantity": find_item(x['id'])})
+        for book in books:
+            item = find_item(book['id'])
+            book.update({"item_id": item['id']})
+            book.update({"quantity": item['quantity']})
+            book['price'] = round(book['price'] * item['quantity'], 2)
+            book.update({"user": request.user.id})
 
         return Response(books)
 
@@ -68,6 +73,12 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
+
+    authentication_classes = [CsrfExemptSessionAuthentication, BasicAuthentication]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Item.objects.filter(user=user)
 
 
 class UserViewSet(viewsets.ModelViewSet):

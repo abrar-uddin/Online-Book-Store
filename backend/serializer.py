@@ -18,7 +18,7 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ["book", "quantity"]
+        fields = "__all__"
 
 
 class UserSerializer(serializers.ModelSerializer):
