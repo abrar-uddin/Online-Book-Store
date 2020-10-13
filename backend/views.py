@@ -64,6 +64,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
             item = find_item(book['id'])
             book.update({"item_id": item['id']})
             book.update({"quantity": item['quantity']})
+            book.update({"unit_price": book['price']})
             book['price'] = round(book['price'] * item['quantity'], 2)
             book.update({"user": request.user.id})
 

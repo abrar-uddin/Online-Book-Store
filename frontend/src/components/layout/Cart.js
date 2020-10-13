@@ -19,9 +19,9 @@ export class Cart extends Component {
         this.props.getCartTotal()
     };
 
-    updateQuantity(item_id, book_id, user, name) {
+    updateQuantity(item_id, book_id, user, name, price) {
         let new_quantity = document.getElementById(name).value
-        this.props.updateItem(item_id, new_quantity, book_id, user)
+        this.props.updateItem(item_id, new_quantity, book_id, user, price)
     }
 
     render() {
@@ -48,14 +48,15 @@ export class Cart extends Component {
                                                 </p>
                                             </div>
                                             <div className="col s2  right">
-                                                Price
-                                                <input disabled value={shopping_cart.price} id="book_price" type="text"
+                                                <label htmlFor="book_price">Price</label>
+                                                <input disabled value={shopping_cart.unit_price} id="book_price" type="text"
                                                        className="validate"></input>
+
                                             </div>
                                             <div className="col s2  right">
-                                                Quantity
+                                                <label htmlFor={shopping_cart.name}>Quantity</label>
                                                 <input defaultValue={shopping_cart.quantity}
-                                                       onChange={this.updateQuantity.bind(this, shopping_cart.item_id, shopping_cart.id, shopping_cart.user, shopping_cart.name)}
+                                                       onChange={this.updateQuantity.bind(this, shopping_cart.item_id, shopping_cart.id, shopping_cart.user, shopping_cart.name, shopping_cart.unit_price)}
                                                        id={shopping_cart.name} type="text"
                                                        className="validate"></input>
                                             </div>

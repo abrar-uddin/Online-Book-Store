@@ -37,7 +37,7 @@ export const getCartTotal = () => dispatch => {
 };
 
 // UPDATE Item
-export const updateItem = (id, quantity,book_id, user) => dispatch => {
+export const updateItem = (id, quantity,book_id, user, price) => dispatch => {
     axios.put(`${ITEM_ENDPOINT}/${id}/`, {
         "quantity": quantity,
         "book": book_id,
@@ -46,7 +46,7 @@ export const updateItem = (id, quantity,book_id, user) => dispatch => {
         .then(res => {
             dispatch({
                 type: UPDATE_ITEM,
-                payload: id
+                payload: price*quantity
             });
         }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
