@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { createMessage, returnErrors } from './messages';
-import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM} from "./types";
+import {createMessage, returnErrors} from './messages';
+import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART} from "./types";
 
 const SHOPPING_CART_ENDPOINT = "/api/shopping_cart"
 const ITEM_ENDPOINT = "/api/item"
@@ -37,7 +37,7 @@ export const getCartTotal = () => dispatch => {
 };
 
 // UPDATE Item
-export const updateItem = (id, quantity,book_id, user, price) => dispatch => {
+export const updateItem = (id, quantity, book_id, user, price) => dispatch => {
     axios.put(`${ITEM_ENDPOINT}/${id}/`, {
         "quantity": quantity,
         "book": book_id,
@@ -46,7 +46,7 @@ export const updateItem = (id, quantity,book_id, user, price) => dispatch => {
         .then(res => {
             dispatch({
                 type: UPDATE_ITEM,
-                payload: price*quantity
+                payload: price * quantity
             });
         }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
@@ -55,11 +55,25 @@ export const updateItem = (id, quantity,book_id, user, price) => dispatch => {
 export const deleteItem = (id) => dispatch => {
     axios.delete(`${ITEM_ENDPOINT}/${id}/`)
         .then(res => {
-            getCartTotal()
-            dispatch(createMessage({ deleteLead: 'Item Deleted' }));
+            dispatch(createMessage({deleteLead: 'Item Deleted'}));
             dispatch({
                 type: DELETE_ITEM,
                 payload: id
             });
         }).catch(err => console.log(err));
+};
+
+// DELETE Cart
+export const deleteCart = () => dispatch => {
+    axios.get(SHOPPING_CART_ENDPOINT)
+        .then(res => {
+            axios.delete(SHOPPING_CART_ENDPOINT.concat("/", res.data[0]["id"], '/'))
+                .then(res2 => {
+                    dispatch({
+                        type: DELETE_CART,
+                        payload: res2.data
+                    });
+                }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

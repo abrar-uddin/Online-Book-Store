@@ -9,7 +9,6 @@ function sum(cart){
     let i;
     let add = 0;
     for (i=0; i < cart.length; i++){
-        console.log(cart[i].price)
         add += cart[i].price;
     }
     return add.toFixed(2);
@@ -42,6 +41,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 shopping_cart: [],
+                shopping_cart_total: 0,
             }
         default:
             return state;

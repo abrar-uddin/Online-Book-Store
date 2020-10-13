@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {getCart, getCartTotal, deleteItem, updateItem} from "../../actions/shopping_cart";
+import {getCart, getCartTotal, deleteItem, updateItem, deleteCart} from "../../actions/shopping_cart";
 import shopping_cart from "../../reducers/shopping_cart";
 
 export class Cart extends Component {
@@ -12,6 +12,7 @@ export class Cart extends Component {
         getCartTotal: PropTypes.func.isRequired,
         deleteItem: PropTypes.func.isRequired,
         updateItem: PropTypes.func.isRequired,
+        deleteCart: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -22,7 +23,15 @@ export class Cart extends Component {
     updateQuantity(item_id, book_id, user, name, price) {
         let new_quantity = document.getElementById(name).value
         this.props.updateItem(item_id, new_quantity, book_id, user, price)
+    };
+
+    checkOut(){
+        console.log("SING")
     }
+
+    showShippingField(){
+
+    };
 
     render() {
         return (
@@ -49,9 +58,9 @@ export class Cart extends Component {
                                             </div>
                                             <div className="col s2  right">
                                                 <label htmlFor="book_price">Price</label>
-                                                <input disabled value={shopping_cart.unit_price} id="book_price" type="text"
+                                                <input disabled value={shopping_cart.unit_price}
+                                                       type="text"
                                                        className="validate"></input>
-
                                             </div>
                                             <div className="col s2  right">
                                                 <label htmlFor={shopping_cart.name}>Quantity</label>
@@ -117,7 +126,8 @@ export class Cart extends Component {
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input placeholder="11200 SW 8th St, Miami, FL 33199" id="address" type="text" className="validate"></input>
+                                <input placeholder="11200 SW 8th St, Miami, FL 33199" id="address" type="text"
+                                       className="validate"></input>
                                 <label htmlFor="address">Address</label>
                             </div>
                         </div>
@@ -128,7 +138,8 @@ export class Cart extends Component {
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
                             <div className="input-field col s9">
-                                 <input placeholder="5555555555554444" id="card_number" type="text" className="validate"></input>
+                                <input placeholder="5555555555554444" id="card_number" type="text"
+                                       className="validate"></input>
                                 <label htmlFor="card_number">Card Number</label>
                             </div>
                         </div>
@@ -145,30 +156,31 @@ export class Cart extends Component {
                             <div className="col s2">
                                 <p>
                                     <label>
-                                        <input type="checkbox" className="filled-in" checked="checked"/>
+                                        <input type="checkbox" className="filled-in" checked="checked" onChange={this.showShippingField}/>
                                         <span>Shipping address same as billing</span>
                                     </label>
                                 </p>
                             </div>
                         </div>
-                        <button className="btn waves-effect waves-light pulse" type="submit" name="action">Checkout
+                        <a href="/checkout" className="btn waves-effect waves-light pulse" onClick={this.props.deleteCart}>Checkout
                             <i className="material-icons right">send</i>
-                        </button>
+                        </a>
                     </form>
                 </div>
             </div>
-    );
+        );
     }
-    }
+}
 
-    const mapStateToProps = state => ({
-        shopping_cart: state.shopping_cart.shopping_cart,
-        shopping_cart_total: state.shopping_cart.shopping_cart_total
-    })
+const mapStateToProps = state => ({
+    shopping_cart: state.shopping_cart.shopping_cart,
+    shopping_cart_total: state.shopping_cart.shopping_cart_total
+})
 
-    export default connect(mapStateToProps, {
-        getCart: getCart,
-        getCartTotal: getCartTotal,
-        deleteItem: deleteItem,
-        updateItem: updateItem,
-    })(Cart);
+export default connect(mapStateToProps, {
+    getCart: getCart,
+    getCartTotal: getCartTotal,
+    deleteItem: deleteItem,
+    updateItem: updateItem,
+    deleteCart: deleteCart,
+})(Cart);
