@@ -1,14 +1,14 @@
-import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART} from "../actions/types.js"
+import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART, ADD_ITEM} from "../actions/types.js"
 
 const initialState = {
     shopping_cart: [],
     shopping_cart_total: 0,
 }
 
-function sum(cart){
+function sum(cart) {
     let i;
     let add = 0;
-    for (i=0; i < cart.length; i++){
+    for (i = 0; i < cart.length; i++) {
         add += cart[i].price;
     }
     return add.toFixed(2);
@@ -42,6 +42,10 @@ export default function (state = initialState, action) {
                 ...state,
                 shopping_cart: [],
                 shopping_cart_total: 0,
+            }
+        case ADD_ITEM:
+            return {
+                ...state
             }
         default:
             return state;

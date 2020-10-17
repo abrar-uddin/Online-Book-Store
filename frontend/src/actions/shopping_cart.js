@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {createMessage, returnErrors} from './messages';
-import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART} from "./types";
+import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART, ADD_ITEM} from "./types";
 
 const SHOPPING_CART_ENDPOINT = "/api/shopping_cart"
 const ITEM_ENDPOINT = "/api/item"
@@ -75,5 +75,21 @@ export const deleteCart = () => dispatch => {
                     });
                 }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 
+        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// TODO: Needs testing with Eric and Jesus
+// ADD Item to cart
+export const addItem = (id, quantity, book_id, user, price) => dispatch => {
+    axios.post(`${ITEM_ENDPOINT}/`, {
+        "quantity": quantity,
+        "book": book_id,
+        "user": user
+    })
+        .then(res => {
+            dispatch({
+                type: UPDATE_ITEM,
+                payload: price * quantity
+            });
         }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

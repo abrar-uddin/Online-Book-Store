@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, "frontend/shopping_cart.html")
+    return render(request, "frontend/index.html")

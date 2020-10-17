@@ -25,12 +25,38 @@ export class Cart extends Component {
         this.props.updateItem(item_id, new_quantity, book_id, user, price)
     };
 
-    checkOut(){
-        console.log("SING")
-    }
+    checkOut(e) {
+        let allAreFilled = true;
+        document.getElementById("checkout_form").querySelectorAll("[required]").forEach(function (i) {
+            if (!allAreFilled) return;
+            if (!i.value) allAreFilled = false;
+        })
+        if(allAreFilled){
+            window.location.href = "/#/checkout"
+            this.props.deleteCart()
+        }
 
-    showShippingField(){
+        console.log(allAreFilled)
+    };
 
+    showShippingField() {
+        let shipping_info = document.getElementById("shipping_info");
+        let shipping_first_name = document.getElementById("shipping_first_name");
+        let shipping_last_name = document.getElementById("shipping_last_name");
+        let shipping_address = document.getElementById("shipping_address");
+        let check_box = document.getElementById("shipping_box")
+        let is_checked = check_box.checked;
+        if (is_checked == false) {
+            shipping_info.style.visibility = "visible";
+            shipping_first_name.required = true;
+            shipping_last_name.required = true;
+            shipping_address.required = true;
+        } else {
+            shipping_info.style.visibility = "hidden";
+            shipping_first_name.required = false;
+            shipping_last_name.required = false;
+            shipping_address.required = false;
+        }
     };
 
     render() {
@@ -110,61 +136,83 @@ export class Cart extends Component {
                     </div>
                 ))}
                 <h5 className="right-align">Total: ${this.props.shopping_cart_total}</h5>
-                <h2>Checkout</h2>
                 <div className="row">
-                    <form className="col s12">
-                        <h5>Billing Information</h5>
+                    <h2>Checkout</h2>
+                    <form id="checkout_form" className="col s12">
                         <div className="row">
+                            <h5>Billing Information</h5>
                             <div className="input-field col s6">
-                                <input placeholder="Eric" id="first_name" type="text" className="validate"></input>
+                                <input id="first_name" type="text" className="validate" required></input>
                                 <label htmlFor="first_name">First Name</label>
                             </div>
                             <div className="input-field col s6">
-                                <input placeholder="Tu" id="last_name" type="text" className="validate"></input>
+                                <input id="last_name" type="text" className="validate" required></input>
                                 <label htmlFor="last_name">Last Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input placeholder="11200 SW 8th St, Miami, FL 33199" id="address" type="text"
-                                       className="validate"></input>
+                                <input id="address" type="text"
+                                       className="validate" required></input>
                                 <label htmlFor="address">Address</label>
                             </div>
                         </div>
-                        <h5>Payment Information</h5>
                         <div className="row">
+                            <h5>Payment Information</h5>
                             <div className="input-field col s3">
-                                <input placeholder="Eric Tu" id="full_name" type="text" className="validate"></input>
+                                <input id="full_name" type="text" className="validate" required></input>
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
                             <div className="input-field col s9">
-                                <input placeholder="5555555555554444" id="card_number" type="text"
-                                       className="validate"></input>
+                                <input id="card_number" type="tel"
+                                       className="validate" required></input>
                                 <label htmlFor="card_number">Card Number</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s5">
                                 <i className="material-icons prefix">date_range</i>
-                                <input id="exp_date" type="text" className="datepicker"></input>
+                                <input id="exp_date" type="text" className="datepicker" required></input>
                                 <label htmlFor="exp_date">Expiration Date</label>
                             </div>
                             <div className="input-field col s5">
-                                <input id="cvv" type="text" className="validate"></input>
+                                <input id="cvv" type="tel" className="validate" required></input>
                                 <label htmlFor="cvv">CVV</label>
                             </div>
                             <div className="col s2">
                                 <p>
                                     <label>
-                                        <input type="checkbox" className="filled-in" checked="checked" onChange={this.showShippingField}/>
+                                        <input id="shipping_box" type="checkbox" onChange={this.showShippingField}/>
                                         <span>Shipping address same as billing</span>
                                     </label>
                                 </p>
                             </div>
+
                         </div>
-                        <a href="/checkout" className="btn waves-effect waves-light pulse" onClick={this.props.deleteCart}>Checkout
+                        <div className="row" id="shipping_info">
+                            <h5>Shipping Information</h5>
+                            <div className="row" visibility="hidden">
+                                <div className="input-field col s6">
+                                    <input id="shipping_first_name" type="text" className="validate" required></input>
+                                    <label htmlFor="shipping_first_name">First Name</label>
+                                </div>
+                                <div className="input-field col s6">
+                                    <input id="shipping_last_name" type="text" className="validate" required></input>
+                                    <label htmlFor="shipping_last_name">Last Name</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <input id="shipping_address" type="text"
+                                           className="validate" required></input>
+                                    <label htmlFor="shipping_address">Address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" className="btn waves-effect waves-light"
+                                onClick={this.checkOut.bind(this)}>Checkout
                             <i className="material-icons right">send</i>
-                        </a>
+                        </button>
                     </form>
                 </div>
             </div>
