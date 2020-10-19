@@ -1,7 +1,40 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="app">
 
-{% block title %} Home {% endblock %}
+</div>
+</body>
 
-{% block content %}
-    <h1>Template Homepage</h1>
-{% endblock %}
+
+<link rel="stylesheet" href="{% static 'frontend/materialize.css' %}">
+<link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="{% static 'frontend/main.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{% static 'frontend/materialize.js' %}"></script>
+
+
+<script>
+    // Side Nav
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+    });
+
+    // Auto update fields needs to be implemented
+    $(document).ready(function () {
+        M.updateTextFields();
+    });
+
+    // Date picker
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
+</html>

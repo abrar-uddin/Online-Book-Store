@@ -28,6 +28,9 @@ class Item(models.Model):
     def __str__(self):
         return "({}) {}".format(self.quantity, self.book.name)
 
+    def get_books(self):
+        return self.book
+
     def save(self, *args, **kwargs):
         super(Item, self).save(*args, **kwargs)
         cart, _ = ShoppingCart.objects.get_or_create(user=self.user)
@@ -46,6 +49,13 @@ class ShoppingCart(models.Model):
 
     def get_cart_items(self):
         return self.items.all()
+
+    def get_cart_books(self):
+        items = self.get_cart_items()
+        books = [item.get_books() for item in items]
+
+        return books
+
 
     def get_total(self):
         return round(sum([items.get_price() for items in self.get_cart_items()]), 2)
