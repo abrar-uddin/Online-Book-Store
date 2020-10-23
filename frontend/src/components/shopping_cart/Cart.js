@@ -1,7 +1,17 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {getCart, getCartTotal, deleteItem, updateItem, deleteCart} from "../../actions/shopping_cart";
+import {
+    getCart,
+    getCartTotal,
+    deleteItem,
+    updateItem,
+    deleteCart,
+    addItem,
+    getSavedItems,
+    addSavedItem,
+    deleteSavedItem
+} from "../../actions/shopping_cart";
 import {Link} from 'react-router-dom';
 
 export class Cart extends Component {
@@ -13,11 +23,17 @@ export class Cart extends Component {
         deleteItem: PropTypes.func.isRequired,
         updateItem: PropTypes.func.isRequired,
         deleteCart: PropTypes.func.isRequired,
+        addItem: PropTypes.func.isRequired,
+        getSavedItems: PropTypes.func.isRequired,
+        save_item_list: PropTypes.array.isRequired,
+        addSavedItem: PropTypes.func.isRequired,
+        deleteSavedItem: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
         this.props.getCart()
         this.props.getCartTotal()
+        this.props.getSavedItems()
     };
 
     updateQuantity(item_id, book_id, user, name, price) {
@@ -50,6 +66,23 @@ export class Cart extends Component {
         // console.log('delete')
         this.props.deleteCart()
     };
+
+    addItem(item_id, quantity, book_id, user, price){
+        this.props.addItem(item_id, quantity, book_id, user, price)
+        this.props.deleteSavedItem(item_id)
+        this.props.getCart()
+        this.props.getCartTotal()
+        this.props.getSavedItems()
+    }
+
+    addSavedItemList(item_id, quantity, book_id, user, price){
+        console.log("555")
+        this.props.addSavedItem(item_id, quantity, book_id, user, price)
+        this.props.deleteItem(item_id)
+        this.props.getCart()
+        this.props.getCartTotal()
+        this.props.getSavedItems()
+    }
 
     showShippingField() {
         let shipping_info = document.getElementById("shipping_info");
@@ -108,6 +141,10 @@ export class Cart extends Component {
                                                        id={shopping_cart.name} type="text"
                                                        className="validate"></input>
                                             </div>
+                                            <div className="col s4">
+                                                <a onClick={this.addSavedItemList.bind(this, shopping_cart.item_id, 1, shopping_cart.id, shopping_cart.user, shopping_cart.unit_price)} className="btn btn-small waves-effect waves-light grey"><i
+                                                    className="material-icons left">watch_later</i>Save</a>
+                                            </div>
                                             <div className="col offset-s11">
                                                 <a className="btn-floating btn-small waves-effect waves-light red"
                                                    onClick={this.props.deleteItem.bind(this, shopping_cart.item_id, shopping_cart.price)}><i
@@ -149,18 +186,90 @@ export class Cart extends Component {
                     </div>
                 ))}
                 <h5 id='total' className="right-align">Total: ${this.props.shopping_cart_total}</h5>
+                <h2>Saved Items</h2>
+                {this.props.save_item_list.map(shopping_cart => (
+                    <div key={shopping_cart.id} className="row">
+                        <div className="col s12">
+                            <div className="card horizontal" style={{height: 150}}>
+                                <div className="card-image waves-effect waves-block waves-light">
+                                    <img className="activator"
+                                         src={shopping_cart.image}
+                                         height="150px"></img>
+                                </div>
+                                <div className="card-stacked">
+                                    <div className="card-content">
+                                        <div className="row">
+                                            <div className="col s8">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante
+                                                    eros,
+                                                    tincidunt
+                                                    vitae tellus quis, euismod pharetra felis.....
+                                                </p>
+                                            </div>
+                                            <div className="col s2 right">
+                                                <label htmlFor="book_price">Price</label>
+                                                <input disabled value={shopping_cart.unit_price}
+                                                       type="text"
+                                                       className="validate"></input>
+                                            </div>
+                                            <div className="col s4">
+                                                <a onClick={this.addItem.bind(this, shopping_cart.item_id, 1, shopping_cart.id, shopping_cart.user, shopping_cart.unit_price)} className="btn btn-small waves-effect waves-light red"><i
+                                                    className="material-icons left">add_shopping_cart</i>ADD TO CART</a>
+                                            </div>
+                                            <div className="col offset-s11">
+                                                <a className="btn-floating btn-small waves-effect waves-light red"
+                                                   onClick={this.props.deleteSavedItem.bind(this, shopping_cart.item_id, shopping_cart.price)}><i
+                                                    className="material-icons">delete</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card-reveal">
+                                <span className="card-title grey-text text-darken-4">{shopping_cart.name}<i
+                                    className="material-icons right">close</i></span>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante eros,
+                                        tincidunt
+                                        vitae
+                                        tellus quis, euismod pharetra felis. Maecenas quis nulla ut augue feugiat
+                                        facilisis.
+                                        Sed
+                                        blandit urna in nisi consequat finibus. Mauris scelerisque, arcu eu mattis
+                                        laoreet,
+                                        nunc
+                                        leo elementum nisi, non euismod neque dolor nec nibh. Etiam et nisi ut turpis
+                                        efficitur
+                                        ornare in ac dolor. Maecenas ac aliquet lorem. Aliquam ut rhoncus ante. Nunc
+                                        suscipit
+                                        ante magna, porta venenatis arcu dictum ac. Nam posuere massa non aliquet
+                                        auctor.
+                                        Nulla
+                                        dapibus metus quam, eu cursus mauris bibendum in. Duis ipsum augue, gravida
+                                        vitae mi
+                                        sed, convallis pellentesque est. Vestibulum a hendrerit dui, sed placerat ante.
+                                        Nunc
+                                        tristique, mi ut feugiat facilisis, libero tellus egestas diam, vel vestibulum
+                                        lorem
+                                        lorem quis eros. Donec vitae felis sed justo volutpat pulvinar.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
                 <div className="row">
                     <h2>Checkout</h2>
                     <form id="checkout_form" className="col s12">
                         <div className="row">
                             <h5>Billing Information</h5>
                             <div className="input-field col s6">
-                                <input id="first_name" type="text" className="validate" onKeyUp={this.checkRequired.bind(this)}
+                                <input id="first_name" type="text" className="validate"
+                                       onKeyUp={this.checkRequired.bind(this)}
                                        required></input>
                                 <label htmlFor="first_name">First Name</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="last_name" type="text" className="validate" onKeyUp={this.checkRequired.bind(this)}
+                                <input id="last_name" type="text" className="validate"
+                                       onKeyUp={this.checkRequired.bind(this)}
                                        required></input>
                                 <label htmlFor="last_name">Last Name</label>
                             </div>
@@ -175,7 +284,8 @@ export class Cart extends Component {
                         <div className="row">
                             <h5>Payment Information</h5>
                             <div className="input-field col s3">
-                                <input id="full_name" type="text" className="validate" onKeyUp={this.checkRequired.bind(this)}
+                                <input id="full_name" type="text" className="validate"
+                                       onKeyUp={this.checkRequired.bind(this)}
                                        required></input>
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
@@ -188,7 +298,8 @@ export class Cart extends Component {
                         <div className="row">
                             <div className="input-field col s5">
                                 <i className="material-icons prefix">date_range</i>
-                                <input id="exp_date" type="text" className="datepicker" onChange={this.checkRequired.bind(this)}
+                                <input id="exp_date" type="text" className="datepicker"
+                                       onChange={this.checkRequired.bind(this)}
                                        required></input>
                                 <label htmlFor="exp_date">Expiration Date</label>
                             </div>
@@ -225,7 +336,8 @@ export class Cart extends Component {
                             <div className="row">
                                 <div className="input-field col s12">
                                     <input id="shipping_address" type="text"
-                                           className="validate" onKeyUp={this.checkRequired.bind(this)} required></input>
+                                           className="validate" onKeyUp={this.checkRequired.bind(this)}
+                                           required></input>
                                     <label htmlFor="shipping_address">Address</label>
                                 </div>
                             </div>
@@ -246,7 +358,8 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
     shopping_cart: state.shopping_cart.shopping_cart,
-    shopping_cart_total: state.shopping_cart.shopping_cart_total
+    shopping_cart_total: state.shopping_cart.shopping_cart_total,
+    save_item_list: state.shopping_cart.save_item_list
 })
 
 export default connect(mapStateToProps, {
@@ -255,4 +368,8 @@ export default connect(mapStateToProps, {
     deleteItem: deleteItem,
     updateItem: updateItem,
     deleteCart: deleteCart,
+    addItem: addItem,
+    getSavedItems: getSavedItems,
+    addSavedItem: addSavedItem,
+    deleteSavedItem: deleteSavedItem,
 })(Cart);

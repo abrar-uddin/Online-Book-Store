@@ -1,8 +1,19 @@
-import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART, ADD_ITEM} from "../actions/types.js"
+import {
+    GET_CART,
+    GET_CART_TOTAL,
+    DELETE_ITEM,
+    UPDATE_ITEM,
+    DELETE_CART,
+    ADD_ITEM,
+    ADD_SAVE_ITEM,
+    DELETE_SAVE_ITEM,
+    GET_SAVED_ITEMS
+} from "../actions/types.js"
 
 const initialState = {
     shopping_cart: [],
     shopping_cart_total: 0,
+    save_item_list: [],
 }
 
 function sum(cart) {
@@ -35,7 +46,7 @@ export default function (state = initialState, action) {
         case UPDATE_ITEM:
             return {
                 ...state,
-                shopping_cart_total: action.payload.toFixed(2),
+                shopping_cart_total: (state.shopping_cart_total + Number(action.payload)).toFixed(2),
             }
         case DELETE_CART:
             return {
@@ -43,9 +54,23 @@ export default function (state = initialState, action) {
                 shopping_cart: [],
                 shopping_cart_total: 0,
             }
+        case GET_SAVED_ITEMS:
+            return {
+                ...state,
+                save_item_list: action.payload
+            }
         case ADD_ITEM:
             return {
-                ...state
+                ...state,
+            }
+        case ADD_SAVE_ITEM:
+            return {
+                ...state,
+            }
+        case DELETE_SAVE_ITEM:
+            return {
+                ...state,
+                save_item_list: state.save_item_list.filter(item => item.item_id !== action.payload)
             }
         default:
             return state;
