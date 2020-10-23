@@ -72,14 +72,11 @@ export class Cart extends Component {
         this.props.deleteSavedItem(item_id)
         this.props.getCart()
         this.props.getCartTotal()
-        this.props.getSavedItems()
     }
 
     addSavedItemList(item_id, quantity, book_id, user, price){
-        console.log("555")
         this.props.addSavedItem(item_id, quantity, book_id, user, price)
         this.props.deleteItem(item_id)
-        this.props.getCart()
         this.props.getCartTotal()
         this.props.getSavedItems()
     }

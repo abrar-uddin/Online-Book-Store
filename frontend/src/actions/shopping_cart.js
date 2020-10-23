@@ -88,13 +88,13 @@ export const addItem = (id, quantity, book_id, user, price) => dispatch => {
         "quantity": quantity,
         "book": book_id,
         "user": user
-    })
-        .then(res => {
-            dispatch({
-                type: UPDATE_ITEM,
-                payload: price * quantity
-            });
-        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+        // .then(res => {
+        //     dispatch({
+        //         type: UPDATE_ITEM,
+        //         payload: price * quantity
+        //     });
+        // }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 
@@ -105,7 +105,7 @@ export const addSavedItem = (id, quantity, book_id, user, price) => dispatch => 
         "quantity": quantity,
         "book": book_id,
         "user": user
-    })
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
         // .then(res => {
         //     dispatch({
         //         type: ADD_SAVE_ITEM,

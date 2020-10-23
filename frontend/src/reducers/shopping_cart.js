@@ -46,7 +46,7 @@ export default function (state = initialState, action) {
         case UPDATE_ITEM:
             return {
                 ...state,
-                shopping_cart_total: (state.shopping_cart_total + Number(action.payload)).toFixed(2),
+                shopping_cart_total: action.payload.toFixed(2),
             }
         case DELETE_CART:
             return {
