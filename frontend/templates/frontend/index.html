@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="app">
-<script src="{% static 'frontend/main2.js' %}"></script>
+    <script src="{% static 'frontend/main.js' %}"></script>
 </div>
 </body>
 
@@ -33,7 +33,12 @@
 
     // Date picker
     $(document).ready(function () {
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            onOpen: function () {
+                var instance = M.Datepicker.getInstance($('.datepicker'));
+                instance.options.minDate = Date.now();
+            }
+        });
     });
 </script>
 </html>

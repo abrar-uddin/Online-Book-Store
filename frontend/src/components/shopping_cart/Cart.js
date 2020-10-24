@@ -36,9 +36,10 @@ export class Cart extends Component {
         this.props.getSavedItems()
     };
 
-    updateQuantity(item_id, book_id, user, name, price) {
+    updateQuantity(item_id, book_id, user, name) {
         let new_quantity = document.getElementById(name).value
-        this.props.updateItem(item_id, new_quantity, book_id, user, price)
+        this.props.updateItem(item_id, new_quantity, book_id, user)
+        this.props.getCartTotal()
     };
 
     checkRequired() {
@@ -48,7 +49,7 @@ export class Cart extends Component {
             if (!i.value) allAreFilled = false;
         })
 
-        // console.log(allAreFilled)
+        console.log(allAreFilled)
         let submit = document.getElementById("checkout_btn")
         // let total = this.props.getCartTotal()
         // console.log(total)
@@ -61,7 +62,6 @@ export class Cart extends Component {
 
     // TODO: Check input fields
     // TODO: Disable checkout button if cart empty
-    // TODO: Save book for later
     checkOut(e) {
         // console.log('delete')
         this.props.deleteCart()
@@ -287,21 +287,21 @@ export class Cart extends Component {
                                 <label htmlFor="full_name">Full Name</label>
                             </div>
                             <div className="input-field col s9">
-                                <input id="card_number" type="tel"
-                                       className="validate" onKeyUp={this.checkRequired.bind(this)} required></input>
+                                <input id="card_number"
+                                       className="validate" type="number" onKeyUp={this.checkRequired.bind(this)} required></input>
                                 <label htmlFor="card_number">Card Number</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s5">
                                 <i className="material-icons prefix">date_range</i>
-                                <input id="exp_date" type="text" className="datepicker"
+                                <input placeholder="Expiration Date" id="exp_date" className="datepicker"
                                        onChange={this.checkRequired.bind(this)}
                                        required></input>
-                                <label htmlFor="exp_date">Expiration Date</label>
+                                <label htmlFor="exp_date"></label>
                             </div>
                             <div className="input-field col s5">
-                                <input id="cvv" type="tel" className="validate" onKeyUp={this.checkRequired.bind(this)}
+                                <input id="cvv" type="number" className="validate" onKeyUp={this.checkRequired.bind(this)}
                                        required></input>
                                 <label htmlFor="cvv">CVV</label>
                             </div>

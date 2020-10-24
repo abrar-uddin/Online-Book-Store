@@ -1,7 +1,17 @@
 import axios from 'axios';
 
 import {createMessage, returnErrors} from './messages';
-import {GET_CART, GET_CART_TOTAL, DELETE_ITEM, UPDATE_ITEM, DELETE_CART, ADD_ITEM, ADD_SAVE_ITEM, DELETE_SAVE_ITEM, GET_SAVED_ITEMS} from "./types";
+import {
+    GET_CART,
+    GET_CART_TOTAL,
+    DELETE_ITEM,
+    UPDATE_ITEM,
+    DELETE_CART,
+    ADD_ITEM,
+    ADD_SAVE_ITEM,
+    DELETE_SAVE_ITEM,
+    GET_SAVED_ITEMS
+} from "./types";
 
 const SHOPPING_CART_ENDPOINT = "/api/shopping_cart"
 const ITEM_ENDPOINT = "/api/item"
@@ -40,18 +50,12 @@ export const getCartTotal = () => dispatch => {
 };
 
 // UPDATE Item
-export const updateItem = (id, quantity, book_id, user, price) => dispatch => {
+export const updateItem = (id, quantity, book_id, user) => dispatch => {
     axios.put(`${ITEM_ENDPOINT}/${id}/`, {
         "quantity": quantity,
         "book": book_id,
         "user": user
-    })
-        .then(res => {
-            dispatch({
-                type: UPDATE_ITEM,
-                payload: price * quantity
-            });
-        }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // DELETE Item
@@ -89,12 +93,6 @@ export const addItem = (id, quantity, book_id, user, price) => dispatch => {
         "book": book_id,
         "user": user
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
-        // .then(res => {
-        //     dispatch({
-        //         type: UPDATE_ITEM,
-        //         payload: price * quantity
-        //     });
-        // }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 
@@ -106,12 +104,6 @@ export const addSavedItem = (id, quantity, book_id, user, price) => dispatch => 
         "book": book_id,
         "user": user
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
-        // .then(res => {
-        //     dispatch({
-        //         type: ADD_SAVE_ITEM,
-        //         payload: price * quantity
-        //     });
-        // }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // DELETE Saved Item

@@ -76,9 +76,12 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'timeout': 180,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "postgres",
+        'USER': 'postgres',
+        'PASSWORD': 'Pass2020!',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
