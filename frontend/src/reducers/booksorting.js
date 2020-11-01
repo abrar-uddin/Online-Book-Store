@@ -1,10 +1,10 @@
-import {GET_BOOKS, GET_BOOKS_CATEGORY} from '../actions/types.js';
+import {GET_BOOKS, GET_BOOKS_CATEGORY, GET_BOOKS_TITLE, GET_BOOKS_AUTHOR, GET_BOOKS_PRICE, GET_BOOKS_STARS, GET_BOOKS_TOPSELLERS} from '../actions/types.js';
 
 const initialState = {
     booksorting: []
 }
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case GET_BOOKS:
             return {
@@ -12,6 +12,31 @@ export default function(state = initialState, action) {
                 booksorting: action.payload
             }
         case GET_BOOKS_CATEGORY:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+        case GET_BOOKS_TITLE:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+        case GET_BOOKS_AUTHOR:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+            case GET_BOOKS_PRICE:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+              case GET_BOOKS_STARS:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+              case GET_BOOKS_TOPSELLERS:
             return {
                 ...state,
                 booksorting: action.payload

@@ -3,12 +3,24 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getBooks} from '../../actions/booksorting';
 import {getBooksCategory} from '../../actions/booksorting';
+import {getBooksTitle} from '../../actions/booksorting';
+import {getBooksAuthor} from '../../actions/booksorting';
+import {getBooksPrice} from '../../actions/booksorting';
+import {getBooksStars} from '../../actions/booksorting';
+import {getBooksTopSellers} from '../../actions/booksorting';
 import {addItem} from '../../actions/shopping_cart';
+
 
 export class Books extends Component {
     static propTypes = {
         booksorting: PropTypes.array.isRequired,
-        addItem: PropTypes.func.isRequired
+        addItem: PropTypes.func.isRequired,
+        getBooksCategory: PropTypes.func.isRequired,
+        getBooksTitle: PropTypes.func.isRequired,
+        getBooksAuthor: PropTypes.func.isRequired,
+        getBooksPrice: PropTypes.func.isRequired,
+        getBooksStars: PropTypes.func.isRequired,
+        getBooksTopSellers: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -16,11 +28,11 @@ export class Books extends Component {
     }
 
     getBooksCategory1(name) {
-        this.props.getBooksCategory1(name);
+        this.props.getBooksCategory(name);
     }
 
-    getBooksCategory2(category) {
-        this.props.getBooksCategory2("Art-Photography");
+      getBooksTopSellers1(stars) {
+        this.props.getBooksTopSellers(stars);
     }
 
     addItem2(id, quantity, book_id, user, price) {
@@ -32,34 +44,60 @@ export class Books extends Component {
 
     render() {
         return (
-            <Fragment>
-                <table className="table table-striped">
-                    <tr>
-                        <td>Sort By:</td>
-                        <td><a><i className="material-icons left">library_books</i></a>
+            <div >
+                <h5>Sort By: </h5>
+                <a className='dropdown-trigger btn' data-target='dropdown1' onLoad={this.props.getBooks.bind(this)}><i className="material-icons left">library_books</i>Genre</a>
 
-                            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Genre</a>
+                <ul id='dropdown1' className='dropdown-content'>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Art-Photography")}>Art-Photography</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Biography")}>Biography</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Business-Finance-Law")}>Business-Finance-Law</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Childrens-Books")}>Childrens-Books</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Computing")}>Computing</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Crafts-Hobbies")}>Crafts-Hobbies</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Crime-Thriller")}>Crime-Thriller</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Dictionaries-Languages")}>Dictionaries-Languages</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Entertainment")}>Entertainment</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Food-Drink")}>Food-Drink</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Graphic-Novels-Anime-Manga")}>Graphic-Novels-Anime-Manga</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Health")}>Health</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "History-Archaeology")}>History-Archaeology</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Home-Garden")}>Home-Garden</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Humour")}>Humour</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Medical")}>Medical</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Mind-Body-Spirit")}>Mind-Body-Spirit</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Natural-History")}>Natural-History</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Personal-Development")}>Personal-Development</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Poetry-Drama")}>Poetry-Drama</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Reference")}>Reference</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Religion")}>Religion</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Romance")}>Romance</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Science-Fiction-Fantasy-Horror")}>Science-Fiction-Fantasy-Horror</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Science-Geography")}>Science-Geography</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Society-Social-Sciences")}>Society-Social-Sciences</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Sport")}>Sport</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Stationery")}>Stationery</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Teaching-Resources-Education")}>Teaching-Resources-Education</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Technology-Engineering")}>Technology-Engineering</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Teen-Young-Adult")}>Teen-Young-Adult</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Transport")}>Transport</a></li>
+                    <li><a onClick={this.getBooksCategory1.bind(this, "Travel-Holiday-Guides")}>Travel-Holiday-Guides</a></li>
+                </ul>
 
-                            <ul id='dropdown1' class='dropdown-content'>
-                                <li><a >Art-Photography</a></li>
-                                <li><a >Biography</a></li>
-                                <li><a >Business-Finance-Law</a></li>
-                                <li><a >Childrens-Books</a></li>
-                                <li><a >Crafts-Hobbies</a></li>
-                                <li><a >Crime-Thriller</a></li>
-                                <li><a >Dictionaries-Languages</a></li>
-                                <li><a >Computing</a></li>
+                <a onClick={this.props.getBooksTitle.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">sort_by_alpha</i>Title</a>
 
-                            </ul>
-                        </td>
-                        <td><a ><i className="material-icons left">fiber_new</i>Top Sellers</a></td>
-                        <td><a OnClick = {this.getBooksCategory1.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">sort_by_alpha</i>Title</a></td>
-                        <td><a href="#"><i className="material-icons left">person_outline</i>Author</a></td>
-                        <td><a href="#"><i className="material-icons left">attach_money</i>Price</a></td>
-                        <td><a href="#"><i className="material-icons left">star</i>Book Rating</a></td>
-                        <td><a href="#"><i className="material-icons left">date_range</i>Release Date</a></td>
-                    </tr>
-                </table>
+                <a onClick={this.getBooksTopSellers1.bind(this, "5")} className="waves-effect waves-light btn"><i className="material-icons left">import_contacts</i>Top Sellers</a>
+
+                <a onClick={this.props.getBooksAuthor.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">person_outline</i>Author</a>
+
+                <a onClick={this.props.getBooksPrice.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">attach_money</i>Price</a>
+
+                <a onClick={this.props.getBooksStars.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">star</i>Book Rating</a>
+
+                <a onClick={this.props.getBooks .bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">date_range</i>Release Date</a>
+
+                <a onClick={this.props.getBooks.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">cancel</i>Clear Filter</a>
+
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -91,7 +129,7 @@ export class Books extends Component {
                     ))}
                     </tbody>
                 </table>
-            </Fragment>
+            </div>
         );
     }
 }
@@ -99,5 +137,5 @@ export class Books extends Component {
 const mapStateToProps = state => ({
     booksorting: state.booksorting.booksorting
 });
-export default connect(mapStateToProps, {getBooks, addItem, })
+export default connect(mapStateToProps, {getBooks, addItem, getBooksCategory, getBooksTitle, getBooksAuthor, getBooksPrice, getBooksStars, getBooksTopSellers})
 (Books);
