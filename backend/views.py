@@ -30,7 +30,6 @@ class BookViewSet(viewsets.ModelViewSet):
     ordering_fields = ('category', 'name', 'author', 'price', 'stars', )
     # ordering = ('name')
 
-
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
     queryset = ShoppingCart.objects.all()

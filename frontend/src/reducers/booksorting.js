@@ -1,4 +1,4 @@
-import { GET_BOOKS} from '../actions/types.js';
+import {GET_BOOKS, GET_BOOKS_CATEGORY} from '../actions/types.js';
 
 const initialState = {
     booksorting: []
@@ -7,6 +7,11 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case GET_BOOKS:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+        case GET_BOOKS_CATEGORY:
             return {
                 ...state,
                 booksorting: action.payload
