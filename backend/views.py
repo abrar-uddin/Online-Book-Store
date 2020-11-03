@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 # API Auth
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, \
@@ -26,7 +28,10 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
-
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filter_fields = ('category','stars')
+    ordering_fields = ('category', 'name', 'author', 'price', 'stars', )
+    # ordering = ('name')
 
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
@@ -145,3 +150,4 @@ class SavedItemViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
