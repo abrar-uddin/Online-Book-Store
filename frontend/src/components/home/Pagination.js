@@ -1,17 +1,15 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, } from 'react';
 import axios from 'axios';
+import './Pagination.css';
+import ReactPaginate from 'react-paginate';
 
-
-const App = () => {
-
-}
 
 export class Pagination extends Component {
     render() {
         return (
-            <ul className="pagination">
-                
-            </ul>
+            <div>
+
+            </div>
         );
     }
 }

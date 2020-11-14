@@ -1,4 +1,13 @@
-import {GET_BOOKS, GET_BOOKS_CATEGORY, GET_BOOKS_TITLE, GET_BOOKS_AUTHOR, GET_BOOKS_PRICE, GET_BOOKS_STARS, GET_BOOKS_TOPSELLERS} from '../actions/types.js';
+import {
+    GET_BOOKS,
+    GET_BOOKS_CATEGORY,
+    GET_BOOKS_TITLE,
+    GET_BOOKS_AUTHOR,
+    GET_BOOKS_PRICE,
+    GET_BOOKS_STARS,
+    GET_BOOKS_TOPSELLERS,
+    GET_BOOKS_RELEASE
+} from '../actions/types.js';
 
 const initialState = {
     booksorting: []
@@ -26,17 +35,22 @@ export default function (state = initialState, action) {
                 ...state,
                 booksorting: action.payload
             }
-            case GET_BOOKS_PRICE:
+        case GET_BOOKS_PRICE:
             return {
                 ...state,
                 booksorting: action.payload
             }
-              case GET_BOOKS_STARS:
+        case GET_BOOKS_STARS:
             return {
                 ...state,
                 booksorting: action.payload
             }
-              case GET_BOOKS_TOPSELLERS:
+        case GET_BOOKS_TOPSELLERS:
+            return {
+                ...state,
+                booksorting: action.payload
+            }
+        case GET_BOOKS_RELEASE:
             return {
                 ...state,
                 booksorting: action.payload

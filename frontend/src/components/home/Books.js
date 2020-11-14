@@ -7,8 +7,11 @@ import {getBooksTitle} from '../../actions/booksorting';
 import {getBooksAuthor} from '../../actions/booksorting';
 import {getBooksPrice} from '../../actions/booksorting';
 import {getBooksStars} from '../../actions/booksorting';
+import {getBooksRelease} from '../../actions/booksorting';
 import {getBooksTopSellers} from '../../actions/booksorting';
 import {addItem} from '../../actions/shopping_cart';
+import axios from "axios";
+
 
 
 export class Books extends Component {
@@ -20,7 +23,8 @@ export class Books extends Component {
         getBooksAuthor: PropTypes.func.isRequired,
         getBooksPrice: PropTypes.func.isRequired,
         getBooksStars: PropTypes.func.isRequired,
-        getBooksTopSellers: PropTypes.func.isRequired
+        getBooksTopSellers: PropTypes.func.isRequired,
+        getBooksRelease: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -38,6 +42,8 @@ export class Books extends Component {
     addItem2(id, quantity, book_id, user, price) {
         this.props.addItem(id, quantity, book_id, user, price);
     }
+
+
 
     //TODO: HARD CODED THE ATTRIBUTES IN addItem2 (quantity don't have to worry about it & remove ID)
     //TODO: REMEMBER TO SET UP ORDERING HREFS FOR EACH SORT BY
@@ -92,9 +98,19 @@ export class Books extends Component {
 
                 <a onClick={this.props.getBooksPrice.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">attach_money</i>Price</a>
 
-                <a onClick={this.props.getBooksStars.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">star</i>Book Rating</a>
+                <a className='dropdown-trigger btn' data-target='dropdown2' onLoad={this.props.getBooks.bind(this)}><i className="material-icons left">star</i>Book Rating</a>
+                <ul id='dropdown2' className='dropdown-content'>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "0")}>0 Star</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "1")}>1 Star</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "2")}>2 Stars</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "3")}>3 Stars</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "3.5")}>3.5 Stars</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "4")}>4 Stars</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "4.5")}>4.5 Stars</a></li>
+                    <li><a onClick={this.getBooksTopSellers1.bind(this, "5")}>5 Stars</a></li>
+                </ul>
 
-                <a onClick={this.props.getBooks .bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">date_range</i>Release Date</a>
+                <a onClick={this.props.getBooksRelease.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">date_range</i>Release Date</a>
 
                 <a onClick={this.props.getBooks.bind(this)} className="waves-effect waves-light btn"><i className="material-icons left">cancel</i>Clear Filter</a>
 
@@ -116,6 +132,7 @@ export class Books extends Component {
                             <td>
                                 <p><a href="/#/home">{booksorting.name} by {booksorting.author}</a></p>
                                 <p>Rating: <i className="material-icons left">star</i>{booksorting.stars}</p>
+                                <p>Release Date: <i className="material-icons left">date_range</i>{booksorting.release_date}</p>
                             </td>
                             <td>{booksorting.category}</td>
                             <td>{booksorting.book_format}</td>
@@ -129,6 +146,7 @@ export class Books extends Component {
                     ))}
                     </tbody>
                 </table>
+
             </div>
         );
     }
@@ -137,5 +155,5 @@ export class Books extends Component {
 const mapStateToProps = state => ({
     booksorting: state.booksorting.booksorting
 });
-export default connect(mapStateToProps, {getBooks, addItem, getBooksCategory, getBooksTitle, getBooksAuthor, getBooksPrice, getBooksStars, getBooksTopSellers})
+export default connect(mapStateToProps, {getBooks, addItem, getBooksCategory, getBooksTitle, getBooksAuthor, getBooksPrice, getBooksStars, getBooksTopSellers, getBooksRelease, })
 (Books);

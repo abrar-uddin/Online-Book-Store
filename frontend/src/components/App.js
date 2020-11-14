@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, } from 'react';
 import {render} from 'react-dom';
 import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import Footer from "./layout/Footer";
 
 import {Provider} from 'react-redux'
 import store from "../store";
+import axios from "axios";
 
 class App extends Component {
     render() {
