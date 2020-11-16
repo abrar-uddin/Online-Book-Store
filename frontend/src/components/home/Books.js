@@ -12,8 +12,6 @@ import {getBooksTopSellers} from '../../actions/booksorting';
 import {addItem} from '../../actions/shopping_cart';
 import axios from "axios";
 
-
-
 export class Books extends Component {
     static propTypes = {
         booksorting: PropTypes.array.isRequired,
@@ -42,8 +40,6 @@ export class Books extends Component {
     addItem2(id, quantity, book_id, user, price) {
         this.props.addItem(id, quantity, book_id, user, price);
     }
-
-
 
     //TODO: HARD CODED THE ATTRIBUTES IN addItem2 (quantity don't have to worry about it & remove ID)
     //TODO: REMEMBER TO SET UP ORDERING HREFS FOR EACH SORT BY
