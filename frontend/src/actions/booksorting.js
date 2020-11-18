@@ -7,6 +7,7 @@ import { GET_BOOKS_AUTHOR } from './types';
 import { GET_BOOKS_PRICE } from './types';
 import { GET_BOOKS_STARS } from './types';
 import { GET_BOOKS_TOPSELLERS } from './types';
+import { GET_BOOKS_RELEASE } from './types';
 
 // GET BOOKS
 export const getBooks = () => dispatch => {
@@ -77,11 +78,23 @@ export const getBooksPrice = () => dispatch => {
 // GET BOOKS BY STARS
 export const getBooksStars = () => dispatch => {
     axios.get(`/api/book/?ordering=stars`)
-        .then(res=> {
+        .then(res => {
             dispatch({
                 type: GET_BOOKS_STARS,
                 payload: res.data
             })
         }).catch(err => console.log(err));
+}
+
+// GET BOOKS BY RELEASE DATE
+export const getBooksRelease = () => dispatch => {
+    axios.get(`/api/book/?ordering=release_date`)
+        .then(res=> {
+            dispatch({
+                type: GET_BOOKS_RELEASE,
+                payload: res.data
+            })
+        }).catch(err => console.log(err));
+
 }
 

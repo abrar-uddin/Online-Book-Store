@@ -24,14 +24,19 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 # Create your views here.
 
+# class StandardResultsSetPagination(PageNumberPagination):
+#     page_size = 20
+#     page_size_query_param = 'page_size'
+#     max_page_size = 20
 
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filter_fields = ('category','stars')
-    ordering_fields = ('category', 'name', 'author', 'price', 'stars', )
+    ordering_fields = ('category', 'name', 'author', 'price', 'stars', 'release_date')
     # ordering = ('name')
+    # pagination_class = StandardResultsSetPagination
 
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
