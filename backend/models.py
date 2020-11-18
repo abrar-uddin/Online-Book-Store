@@ -1,5 +1,6 @@
 from django.db import models
 from django.core import validators
+import datetime
 
 
 # Create your models here.
@@ -15,7 +16,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=13)
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    release_date = models.DateField(blank=True, null=True)
+    release_date = models.DateTimeField(default=datetime.date.today)
 
     def __str__(self):
         return self.name
