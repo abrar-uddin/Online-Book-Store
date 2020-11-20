@@ -8,6 +8,7 @@ import { GET_BOOKS_PRICE } from './types';
 import { GET_BOOKS_STARS } from './types';
 import { GET_BOOKS_TOPSELLERS } from './types';
 import { GET_BOOKS_RELEASE } from './types';
+import { GET_BOOKS_PAGE } from './types';
 
 // GET BOOKS
 export const getBooks = () => dispatch => {
@@ -37,6 +38,17 @@ export const getBooksTopSellers = (stars) => dispatch => {
         .then(res=> {
             dispatch({
                 type: GET_BOOKS_TOPSELLERS,
+                payload: res.data
+            })
+        }).catch(err => console.log(err));
+}
+
+// GET BOOKS BY PAGE
+export const getBooksPage = (page, size) => dispatch => {
+    axios.get(`/api/book/?page=${page}&size=${size}`)
+        .then(res=> {
+            dispatch({
+                type: GET_BOOKS_PAGE,
                 payload: res.data
             })
         }).catch(err => console.log(err));
