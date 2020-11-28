@@ -40,6 +40,10 @@ export class Books extends Component {
         this.props.getBooksTopSellers(stars);
     }
 
+    getBooksStars(stars) {
+        this.props.getBooksTopSellers(stars)
+    }
+
      getBooksPage(page, size) {
         this.props.getBooksPage(page, size);
     }
@@ -106,7 +110,7 @@ export class Books extends Component {
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "0")}>0 Star</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "1")}>1 Star</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "2")}>2 Stars</a></li>
-                    <li><a onClick={this.getBooksTopSellers1.bind(this, "3")}>3 Stars</a></li>
+                    <li><a onClick={this.getBooksStars.bind(this, "3")}>3 Stars</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "4")}>4 Stars</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "5")}>5 Stars</a></li>
                 </ul>
