@@ -11,8 +11,8 @@ import {getBooksRelease} from '../../actions/booksorting';
 import {getBooksTopSellers} from '../../actions/booksorting';
 import {getBooksPage} from '../../actions/booksorting';
 import {addItem} from '../../actions/shopping_cart';
-import axios from "axios";
-import ReactPaginate from 'react-paginate';
+
+
 
 export class Books extends Component {
     static propTypes = {

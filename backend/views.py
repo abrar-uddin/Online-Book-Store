@@ -8,6 +8,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.pagination import PageNumberPagination
 
 # API Auth
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, \
