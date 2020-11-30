@@ -49,7 +49,7 @@ export class Cart extends Component {
             if (!i.value) allAreFilled = false;
         })
 
-        console.log(allAreFilled)
+        // console.log(allAreFilled)
         let submit = document.getElementById("checkout_btn")
         // let total = this.props.getCartTotal()
         // console.log(total)

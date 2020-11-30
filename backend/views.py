@@ -33,10 +33,11 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter)
-    filter_fields = ('category','stars')
+    filter_fields = ('category', 'stars')
     ordering_fields = ('category', 'name', 'author', 'price', 'stars', 'release_date')
     # ordering = ('name')
     # pagination_class = StandardResultsSetPagination
+
 
 class ShoppingCartViewSet(viewsets.ModelViewSet):
     serializer_class = ShoppingCartSerializer
@@ -155,4 +156,3 @@ class SavedItemViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-
