@@ -24,10 +24,8 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 # Create your views here.
 
-# class StandardResultsSetPagination(PageNumberPagination):
-#     page_size = 20
-#     page_size_query_param = 'page_size'
-#     max_page_size = 20
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size_query_param = 'size'
 
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
@@ -36,7 +34,7 @@ class BookViewSet(viewsets.ModelViewSet):
     filter_fields = ('category', 'stars')
     ordering_fields = ('category', 'name', 'author', 'price', 'stars', 'release_date')
     # ordering = ('name')
-    # pagination_class = StandardResultsSetPagination
+    pagination_class = StandardResultsSetPagination
 
 
 class ShoppingCartViewSet(viewsets.ModelViewSet):

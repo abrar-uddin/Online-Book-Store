@@ -6,11 +6,12 @@ import {
     GET_BOOKS_PRICE,
     GET_BOOKS_STARS,
     GET_BOOKS_TOPSELLERS,
-    GET_BOOKS_RELEASE
+    GET_BOOKS_RELEASE,
+    GET_BOOKS_PAGE
 } from '../actions/types.js';
 
 const initialState = {
-    booksorting: []
+    booksorting: [],
 }
 
 export default function (state = initialState, action) {
@@ -54,6 +55,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 booksorting: action.payload
+            }
+        case GET_BOOKS_PAGE:
+            return {
+                ...state,
+                booksorting: action.payload.results
             }
         default:
             return state;

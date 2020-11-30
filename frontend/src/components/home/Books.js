@@ -9,8 +9,10 @@ import {getBooksPrice} from '../../actions/booksorting';
 import {getBooksStars} from '../../actions/booksorting';
 import {getBooksRelease} from '../../actions/booksorting';
 import {getBooksTopSellers} from '../../actions/booksorting';
+import {getBooksPage} from '../../actions/booksorting';
 import {addItem} from '../../actions/shopping_cart';
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
 
 export class Books extends Component {
     static propTypes = {
@@ -22,7 +24,8 @@ export class Books extends Component {
         getBooksPrice: PropTypes.func.isRequired,
         getBooksStars: PropTypes.func.isRequired,
         getBooksTopSellers: PropTypes.func.isRequired,
-        getBooksRelease: PropTypes.func.isRequired
+        getBooksRelease: PropTypes.func.isRequired,
+        getBooksPage: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -35,6 +38,14 @@ export class Books extends Component {
 
       getBooksTopSellers1(stars) {
         this.props.getBooksTopSellers(stars);
+    }
+
+    getBooksStars(stars) {
+        this.props.getBooksTopSellers(stars)
+    }
+
+     getBooksPage(page, size) {
+        this.props.getBooksPage(page, size);
     }
 
     addItem2(id, quantity, book_id, user, price) {
@@ -99,10 +110,8 @@ export class Books extends Component {
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "0")}>0 Star</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "1")}>1 Star</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "2")}>2 Stars</a></li>
-                    <li><a onClick={this.getBooksTopSellers1.bind(this, "3")}>3 Stars</a></li>
-                    <li><a onClick={this.getBooksTopSellers1.bind(this, "3.5")}>3.5 Stars</a></li>
+                    <li><a onClick={this.getBooksStars.bind(this, "3")}>3 Stars</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "4")}>4 Stars</a></li>
-                    <li><a onClick={this.getBooksTopSellers1.bind(this, "4.5")}>4.5 Stars</a></li>
                     <li><a onClick={this.getBooksTopSellers1.bind(this, "5")}>5 Stars</a></li>
                 </ul>
 
@@ -142,7 +151,27 @@ export class Books extends Component {
                     ))}
                     </tbody>
                 </table>
-
+                <ul className="pagination">
+                    <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
+                    <li className="active"><a onClick={this.getBooksPage.bind(this, "1", "20")}>1</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "2", "20")}>2</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "3", "20")}>3</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "4", "20")}>4</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "5", "20")}>5</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "6", "20")}>6</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "7", "20")}>7</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "8", "20")}>8</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "9", "20")}>9</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "10", "20")}>10</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "11", "20")}>11</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "12", "20")}>12</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "13", "20")}>13</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "14", "20")}>14</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "15", "20")}>15</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "16", "20")}>16</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "17", "20")}>17</a></li>
+                    <li className="waves-effect"><a onClick={this.getBooksPage.bind(this, "${page+1}", "${size+1}")}><i className="material-icons">chevron_right</i></a></li>
+                </ul>
             </div>
         );
     }
@@ -151,5 +180,5 @@ export class Books extends Component {
 const mapStateToProps = state => ({
     booksorting: state.booksorting.booksorting
 });
-export default connect(mapStateToProps, {getBooks, addItem, getBooksCategory, getBooksTitle, getBooksAuthor, getBooksPrice, getBooksStars, getBooksTopSellers, getBooksRelease, })
+export default connect(mapStateToProps, {getBooks, addItem, getBooksCategory, getBooksTitle, getBooksAuthor, getBooksPrice, getBooksStars, getBooksTopSellers, getBooksRelease, getBooksPage, })
 (Books);
