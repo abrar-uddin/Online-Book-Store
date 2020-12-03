@@ -1,0 +1,40 @@
+export const GET_CART = "GET_CART"
+export const GET_CART_TOTAL = "GET_CART_TOTAL"
+export const DELETE_ITEM = "DELETE_ITEM"
+export const UPDATE_ITEM = "UPDATE_ITEM"
+export const DELETE_CART = "DELETE_CART"
+export const ADD_ITEM = "ADD_ITEM"
+
+export const GET_SAVED_ITEMS = "GET_SAVED_ITEMS"
+export const ADD_SAVE_ITEM = "ADD_SAVE_ITEM"
+export const DELETE_SAVE_ITEM = "DELETE_SAVE_ITEM"
+
+export const GET_BOOKS = "GET_BOOKS";
+export const GET_BOOKS_CATEGORY = "GET_BOOKS_CATEGORY";
+export const GET_BOOKS_TITLE = "GET_BOOKS_TITLE";
+export const GET_BOOKS_AUTHOR = "GET_BOOKS_AUTHOR";
+export const GET_BOOKS_PRICE = "GET_BOOKS_PRICE";
+export const GET_BOOKS_STARS = "GET_BOOKS_STARS";
+export const GET_BOOKS_TOPSELLERS = "GET_BOOKS_TOPSELLERS";
+export const GET_BOOKS_RELEASE = "GET_BOOKS_RELEASE";
+export const GET_BOOKS_PAGE = "GET_BOOKS_PAGE";
+
+export const GET_PROFILES = "GET_PROFILES";
+export const DELETE_PROFILES = "DELETE_PROFILES";
+export const ADD_PROFILES = "ADD_PROFILES";
+export const GET_ERRORS = "GET_ERRORS";
+export const CREATE_MESSAGE = "CREATE_MESSAGE";
+export const USER_LOADING = "USER_LOADING";
+export const USER_LOADED = "USER_LOADED";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const GET_CARDS = "GET_CARDS";
+export const DELETE_CARDS = "DELETE_CARDS";
+export const ADD_CARDS = "ADD_CARDS";
+export const GET_DETAILS = "GET_DETAILS";
+export const DELETE_DETAILS = "DELETE_DETAILS";
+export const ADD_DETAILS = "ADD_DETAILS";
