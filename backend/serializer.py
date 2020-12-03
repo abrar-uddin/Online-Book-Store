@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ShoppingCart, Item, Book
+from .models import ShoppingCart, Item, Book, SavedList, SavedItem
 from django.contrib.auth.models import User
 
 
@@ -18,6 +18,18 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
+        fields = "__all__"
+
+
+class SavedListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedList
+        fields = "__all__"
+
+
+class SavedItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedItem
         fields = "__all__"
 
 
